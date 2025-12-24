@@ -55,8 +55,8 @@ const Review = () => {
   };
 
   return (
-    <div className="container min-vh-100 d-flex justify-content-center align-items-center">
-      <div className="form-container">
+    <div className="container  d-flex justify-content-center align-items-center">
+      <div className="form-container py-5">
         <form noValidate onSubmit={handleSubmit} ref={formRef}>
           <div>
             <h1 className="text-center">Write Review</h1>

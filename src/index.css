@@ -23,7 +23,7 @@
 }
 
 .form-container {
-max-width: 500px;
+    max-width: 700px;
     width: 100%;
 }
 
@@ -34,7 +34,7 @@ max-width: 500px;
     color: red;
 }
 
-.pro-img{
+.pro-img {
     width: 75%;
 }
 
@@ -47,13 +47,8 @@ max-width: 500px;
         display: none;
     }
 
-    .pro-img{
+    .pro-img {
         width: 100% !important;
     }
 }
-/* 
-@media(max-width : 567px){
-    .pro-img{
-        width: 100%;
-    }
-} */
+
