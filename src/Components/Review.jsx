@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import DisplayReviews from "./DisplayReviews";
 
 const Review = () => {
   const [input, setInput] = useState({
@@ -10,6 +11,16 @@ const Review = () => {
   });
 
   const [error, setErr] = useState({});
+  const [reviews, setReviews] = useState([
+    {
+      id: Date.now(),
+      rating: 5,
+      name: "jessica",
+      email: "jessica@gmail.com",
+      subject: "Lightweight and Effective",
+      comment: "Keeps skin soft and hydrated without feeling greasy. Absorbs quickly and works well for daily use.",
+    },
+  ]);
   const formRef = useRef(null);
 
   const handleChange = (e) => {
@@ -45,6 +56,8 @@ const Review = () => {
 
     setErr(errors);
     if (Object.keys(errors).length > 0) return;
+
+    setReviews((prev => [...prev, { id:Date.now(), ...input}]))
     setInput({
       rating: "",
       name: "",
@@ -55,110 +68,113 @@ const Review = () => {
   };
 
   return (
-    <div className="container  d-flex justify-content-center align-items-center">
-      <div className="form-container py-5">
-        <form noValidate onSubmit={handleSubmit} ref={formRef}>
-          <div>
-            <h1 className="text-center">Write Review</h1>
+    <>
+      <div className="container  d-flex justify-content-center align-items-center">
+        <div className="form-container py-5">
+          <form noValidate onSubmit={handleSubmit} ref={formRef}>
+            <div>
+              <h1 className="text-center">Write Review</h1>
 
-            <div className="mb-3">
-              <label htmlFor="rating" className="form-label">
-                Rating :
-              </label>
-              <select
-                className={` form-select ${
-                  error.ratingError ? `border-danger` : ``
-                }`}
-                id="rating"
-                value={input.rating}
-                required
-                onChange={handleChange}
-              >
-                <option value="">Select Rating</option>
-                <option value="1">1 Star(Worst)</option>
-                <option value="2">2 Star</option>
-                <option value="3">3 Star(Average)</option>
-                <option value="4">4 Star</option>
-                <option value="5">5 Star(Best)</option>
-              </select>
-              <div className="error-msg">{error.ratingError || ""}</div>
-            </div>
+              <div className="mb-3">
+                <label htmlFor="rating" className="form-label">
+                  Rating :
+                </label>
+                <select
+                  className={` form-select ${
+                    error.ratingError ? `border-danger` : ``
+                  }`}
+                  id="rating"
+                  value={input.rating}
+                  required
+                  onChange={handleChange}
+                >
+                  <option value="">Select Rating</option>
+                  <option value="1">1 Star(Worst)</option>
+                  <option value="2">2 Star</option>
+                  <option value="3">3 Star(Average)</option>
+                  <option value="4">4 Star</option>
+                  <option value="5">5 Star(Best)</option>
+                </select>
+                <div className="error-msg">{error.ratingError || ""}</div>
+              </div>
 
-            <div className="mb-3">
-              <label htmlFor="name" className="form-label">
-                Name :{" "}
-              </label>
-              <input
-                type="text"
-                className={` form-control ${
-                  error.nameError ? `border-danger` : ``
-                }`}
-                id="name"
-                value={input.name}
-                required
-                onChange={handleChange}
-              />
-              <div className="error-msg">{error.nameError || ""}</div>
-            </div>
+              <div className="mb-3">
+                <label htmlFor="name" className="form-label">
+                  Name :{" "}
+                </label>
+                <input
+                  type="text"
+                  className={` form-control ${
+                    error.nameError ? `border-danger` : ``
+                  }`}
+                  id="name"
+                  value={input.name}
+                  required
+                  onChange={handleChange}
+                />
+                <div className="error-msg">{error.nameError || ""}</div>
+              </div>
 
-            <div className="mb-3">
-              <label htmlFor="email" className="form-label">
-                Email :{" "}
-              </label>
-              <input
-                type="email"
-                className={` form-control ${
-                  error.emailError ? `border-danger` : ``
-                }`}
-                id="email"
-                value={input.email}
-                required
-                onChange={handleChange}
-              />
-              <div className="error-msg">{error.emailError || ""}</div>
-            </div>
+              <div className="mb-3">
+                <label htmlFor="email" className="form-label">
+                  Email :{" "}
+                </label>
+                <input
+                  type="email"
+                  className={` form-control ${
+                    error.emailError ? `border-danger` : ``
+                  }`}
+                  id="email"
+                  value={input.email}
+                  required
+                  onChange={handleChange}
+                />
+                <div className="error-msg">{error.emailError || ""}</div>
+              </div>
 
-            <div className="mb-3">
-              <label htmlFor="subject" className="form-label">
-                Review Subject :{" "}
-              </label>
-              <input
-                type="text"
-                className={` form-control ${
-                  error.subjectError ? `border-danger` : ``
-                }`}
-                id="subject"
-                value={input.subject}
-                required
-                onChange={handleChange}
-              />
-              <div className="error-msg">{error.subjectError || ""}</div>
-            </div>
+              <div className="mb-3">
+                <label htmlFor="subject" className="form-label">
+                  Review Subject :{" "}
+                </label>
+                <input
+                  type="text"
+                  className={` form-control ${
+                    error.subjectError ? `border-danger` : ``
+                  }`}
+                  id="subject"
+                  value={input.subject}
+                  required
+                  onChange={handleChange}
+                />
+                <div className="error-msg">{error.subjectError || ""}</div>
+              </div>
 
-            <div className="mb-3">
-              <label htmlFor="comment" className="form-label d-block">
-                Comment :{" "}
-              </label>
-              <textarea
-                name="comment"
-                id="comment"
-                className={` form-control ${
-                  error.commentError ? `border-danger` : ``
-                }`}
-                value={input.comment}
-                required
-                onChange={handleChange}
-              ></textarea>
-              <div className="error-msg">{error.commentError || ""}</div>
-            </div>
+              <div className="mb-3">
+                <label htmlFor="comment" className="form-label d-block">
+                  Comment :{" "}
+                </label>
+                <textarea
+                  name="comment"
+                  id="comment"
+                  className={` form-control ${
+                    error.commentError ? `border-danger` : ``
+                  }`}
+                  value={input.comment}
+                  required
+                  onChange={handleChange}
+                ></textarea>
+                <div className="error-msg">{error.commentError || ""}</div>
+              </div>
 
-            <div className="mb-3 text-center">
-              <button className="btn bg-grey">Submit Review</button>
+              <div className="mb-3 text-center">
+                <button className="btn bg-grey">Submit Review</button>
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
-    </div>
+      <DisplayReviews reviews={reviews} />
+    </>
   );
 };
 

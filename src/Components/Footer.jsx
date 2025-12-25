@@ -65,7 +65,7 @@ const Footer = () => {
           <div className="col-md-3">
             <h3 className="fw-semibold">Information</h3>
             <div>
-              <ul className="p-0">
+              <ul className="p-0 grey-text-color">
                 <li className="list-unstyled mb-2 fw-semibold">
                   Start A Return
                 </li>
